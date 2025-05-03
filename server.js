@@ -31,3 +31,17 @@ app.post("/api/download", (req, res) => {
 app.listen(PORT, () => {
   console.log(`الخادم يعمل على http://localhost:${PORT}`);
 });
+// استيراد المكتبات
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// ضبط المسار للصفحة الرئيسية (root)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html')); // أو اسم الملف الذي تريد عرضه
+});
+
+// استماع على البورت 3000
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
