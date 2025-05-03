@@ -1,0 +1,41 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f0f0;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .container {
+    background: #fff;
+    padding: 40px;
+    margin: auto;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  
+  input[type="url"] {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #00aaff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .ads {
+    margin-top: 30px;
+    padding: 10px;
+    background: #eee;
+    border-radius: 6px;
+  }
+  
