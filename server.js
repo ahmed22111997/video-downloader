@@ -1,31 +1,30 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { exec } = require("child_process");
+const ytdl = require("ytdl-core"); // استخدام ytdl-core لتحميل الفيديوهات
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public")); // علشان HTML يشتغل
 
-app.post("/api/download", (req, res) => {
+app.post("/api/download", async (req, res) => {
   const videoUrl = req.body.url;
   if (!videoUrl) {
     return res.status(400).json({ success: false, message: "رابط غير صالح" });
   }
 
-  const command = `"./yt-dlp.exe" -g "${videoUrl}"`;
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(stderr);
-      return res.status(500).json({ success: false, message: "فشل التحميل" });
-    }
+  try {
+    const info = await ytdl.getInfo(videoUrl);  // نحصل على معلومات الفيديو
+    const downloadUrl = info.formats[0].url;     // هنا هنجيب أول رابط من الجودة المتاحة
 
-    const downloadUrl = stdout.trim();
     res.json({ success: true, downloadUrl });
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "فشل التحميل" });
+  }
 });
 
 app.listen(PORT, () => {
