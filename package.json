@@ -16,3 +16,7 @@
     "express": "^5.1.0"
   }
 }
+"dependencies": {
+  "ytdl-core": "^4.11.0"  // أو آخر إصدار
+}
+
